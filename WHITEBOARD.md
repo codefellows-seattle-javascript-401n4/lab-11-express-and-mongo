@@ -12,4 +12,8 @@ As a game player, I want the game to get harder as I get better so that I can im
 **Implementation**
 
 Fork this Fiddle and upgrade the game to add dynamic levels
-http://jsfiddle.net/SXm8W/25/
+  - http://jsfiddle.net/SXm8W/25/
+  
+
+**BONUS**
+Earn a point for each new valid rule that you come up with an implement (max 5)

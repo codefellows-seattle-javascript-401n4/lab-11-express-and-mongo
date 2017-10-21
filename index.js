@@ -27,7 +27,7 @@ app.get('/api/notes', (req,res) => {
   let queryId = req.query.id ? {_id: mongodb.ObjectId(req.query.id)} : {};
   connection.then(db => {
     const col = promAll(db.collection('notes'));
-    col.findAsync(queryId).then(cur =
+    col.findAsync(queryId).then(cur => {
       promAll(cur).toArrayAsync()
         .then(res.send.bind(res))
         .catch(console.log)

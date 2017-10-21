@@ -10,5 +10,12 @@
     "test": "jest"
   },
   "author": "jrzollin@yahoo.com",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "mongodb": "^2.2.33"
+  },
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
 }

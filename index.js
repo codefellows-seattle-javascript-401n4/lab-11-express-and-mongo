@@ -1,14 +1,26 @@
 'use strict';
 
 const express = require('express');
-const promAll = require('bluebird').PromisfyAll;
-const MongoClient = promAll(require('mongodb').MongoClient);
+const jsonParser = require('body-parser').json();
+const promAll = require('bluebird').promisifyAll;
+const mongodb = require('mongodb');
+const MongoClient = promAll(mongodb.MongoClient);
 const connection = MongoClient.connectAsync('mongodb://localhost:27017/expressmongo');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-
+ 
+app.post('/api/notes', jsonParser, (req,res) => {
+  connection.then(db => {
+    const col = promAll(db.collection('notes'));
+    col.insertAsync(req.body)
+      .then(mongoRes => mongoRes.ops[0])
+      .then(res.send.bind(res))
+      .catch(console.log)
+      .catch(() => res.status(500).send('server error'));
+    return db; 
+  });
+});
 
 app.listen(PORT, () => console.log(`server up on port: ${PORT}`));

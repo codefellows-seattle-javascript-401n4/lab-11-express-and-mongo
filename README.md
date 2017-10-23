@@ -1,30 +1,53 @@
-![cf](http://i.imgur.com/7v5ASc8.png) 11: Express and Mongo
-===
+![cf](https://i.imgur.com/7v5ASc8.png) 11: Single Resource Express API
+======
 
-## Learning Objectives
-* Students will learn about MongoDB and Express
-* Students will be able to build RESTful HTTP servers uing express
-* Students will be able to persist data using MongoDB
+## Submission Instructions
+  * fork this repository & create a new branch for your work
+  * write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-susan`
+  * push to your repository
+  * submit a pull request to this repository
+  * submit a link to your PR in canvas
+  * write a question and observation on canvas
 
-## Resources
-* Skim [express api docs](http://expressjs.com/en/4x/api.html)
-* Read [express routing](http://expressjs.com/en/guide/routing.html)
-* Read [MongoDB Driver QuickStart](http://mongodb.github.io/node-mongodb-native/2.2/quick-start/quick-start/)
-* Skim [MongoDB Driver Collection API Docs](http://mongodb.github.io/node-mongodb-native/2.2/api/Collection.html)
+## Learning Objectives  
+* students will be able to create a single resource API using the express framework
+* students will be able to leverage 3rd party helper modules for debugging, logging, and handling errors
 
-## Express
-ExpressJS is a lightweight framework for building web servers. ExpressJS extends the NodeJS http module with a minimal feature set that enables developers to build quickly build powerful web applications. Express features include routing with url params, error handling, a static server, cookie and link helpers, convienience methods for sending json and jsonp, locataion and redirect management, request parsing, server side redning, and a framework for creating middleware to extend express. 
+## Requirements
 
-## MongoDB
-MongoDB is a free and open-source document oriented database. MongoDB is a NoSQL database. It allows developers to create Scheamas and store and query JSON like documents. MongoDB has a powerful query system that supports field dueries, range queries, and regular expression searches. Documents can be index with primary and secondary keys. Mongo databases can scale horizontly using a technique called sharding, that enables many Mongo databases to act as one through the use of a load balencer. Mongo has an aggragation framework that enables devopers to process data and return computed results. MongoDB has grown in popularity among team that strive for agile rapid development of their products. It is a great database for storing key value pairs. 
+#### Configuration
+* `package.json`
+* `.eslintrc`
+* `.gitignore`
+* `README.md`
+  * your `README.md` should include detailed instructions on how to use your API
 
-Although MongoDB has many great features for build modern web application, it is not good at solving the following problems:
+#### Feature Tasks
+* create an HTTP server using `express`
+* create a object constructor that creates a _simple resource_ with at least 3 properties
+  * it can **not** have the same properties as the in-class sample code (other than the `id`)
+  * a unique `id` property should be included *(node-uuid)*
+  * include two additional properties of your choice
+* use the JSON parser included with the `body-parser` module as a middleware component to parse the request body on `POST` and `PUT` routes
+* use the npm `debug` module to log the methods in your application
+* create an `npm` script to automate the `debug` process and start the server
+* persist your API data using the storage module and file system persistence
 
- - Mongo does not support joins, and therefor doesn't model relational data well
- - It is not good for storing binary data (like images)
- - It is not small enough to run as an embeded DB (like on a phone)
- - It is also not good a doing large MapReduce jobs (huge aggragations)
- 
- If your application is depending on doing many of these operations, you may want to consider using other database technologies. 
+#### Server Endpoints
+* **`/api/simple-resource-name`**
+* `POST` request
+ * pass data as stringifed JSON in the body of a **POST** request to create a new resource
+* `GET` request
+ * pass `?id=<uuid>` as a query string parameter to retrieve a specific resource (as JSON)
+* `DELETE` request
+ * pass `?id=<uuid>` in the query string to **DELETE** a specific resource
+ * this should return a 204 status code with no content in the body
 
-MongoDB, like many databases, is built on the client-server model. A Mogno Server called a Mongo [Daemon](https://en.wikipedia.org/wiki/Daemon_(computing)) is run as a backgroud task on a host. A Client such as a Mongo Shell or Mongo Driver can connect to the Mongo Dameon to run queries. Mongo Drivers are librarys that enable developers to make queries from a programing language. 
+#### Tests
+* write a test to ensure that your api returns a status code of 404 for routes that have not been registered
+* write tests to ensure the `/api/simple-resource-name` endpoint responds as described for each condition below:
+ * `GET`: test 404, it should respond with 'not found' for valid requests made with an id that was not found
+ * `GET`: test 400, it should respond with 'bad request' if no id was provided in the request
+ * `GET`: test 200, it should contain a response body for a request made with a valid id
+ * `POST`: test 400, it should respond with 'bad request' if no request body was provided or the body was invalid
+ * `POST`: test 200, it should respond with the body content for a post request with a valid body

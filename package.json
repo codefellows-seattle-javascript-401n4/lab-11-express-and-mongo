@@ -1,0 +1,28 @@
+{
+  "name": "lab-11-express-and-mongo",
+  "version": "1.0.0",
+  "description": "![cf](http://i.imgur.com/7v5ASc8.png) 11: Express and Mongo ===",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "watch": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sgordon834/lab-11-express-and-mongo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sgordon834/lab-11-express-and-mongo/issues"
+  },
+  "homepage": "https://github.com/sgordon834/lab-11-express-and-mongo#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33",
+    "nodemon": "^1.12.1"
+  }
+}

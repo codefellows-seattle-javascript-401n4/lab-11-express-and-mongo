@@ -1,0 +1,19 @@
+{
+  "name": "lab-kyle",
+  "version": "0.0.1",
+  "description": "lab-11",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krichey15/lab-11-express-and-mongo.git"
+  },
+  "author": "richey.kyle.i@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krichey15/lab-11-express-and-mongo/issues"
+  },
+  "homepage": "https://github.com/krichey15/lab-11-express-and-mongo#readme"
+}

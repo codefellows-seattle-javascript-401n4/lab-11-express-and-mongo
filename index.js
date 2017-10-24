@@ -29,7 +29,12 @@ app.get('/api/notes', (req,res) => {
     const col = promAll(db.collection('notes'));
     col.findAsync(queryId).then(cur => {
       promAll(cur).toArrayAsync()
-        .then(res.send.bind(res))
+        .then(cur => {
+          if(cur.length===0) {
+            res.status(404).send('a note with that ID does not exist');
+          } 
+          res.status(200).send(cur);
+        })
         .catch(console.log)
         .catch(() => res.status(500).send('server error'));
       return db;

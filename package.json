@@ -1,0 +1,24 @@
+{
+  "name": "lab-11-express-and-mongo",
+  "version": "1.0.0",
+  "description": "![cf](https://i.imgur.com/7v5ASc8.png) 11: Single Resource Express API ======",
+  "main": "index.js",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "mongodb": "^2.2.33"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hanhthaoluu/lab-11-express-and-mongo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hanhthaoluu/lab-11-express-and-mongo/issues"
+  },
+  "homepage": "https://github.com/hanhthaoluu/lab-11-express-and-mongo#readme"
+}

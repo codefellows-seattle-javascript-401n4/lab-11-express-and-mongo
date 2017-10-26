@@ -1,0 +1,6 @@
+[submodule "baseSetup"]
+	path = baseSetup
+	url = https://github.com/meganrm/baseSetup
+[submodule "path"]
+	path = path
+	url = https://github.com/meganrm/baseSetup

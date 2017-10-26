@@ -1,0 +1,22 @@
+{
+  "name": "lab-11-express-and-mongo",
+  "version": "1.0.0",
+  "description": "![cf](https://i.imgur.com/7v5ASc8.png) 11: Single Resource Express API ======",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meganrm/lab-11-express-and-mongo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meganrm/lab-11-express-and-mongo/issues"
+  },
+  "homepage": "https://github.com/meganrm/lab-11-express-and-mongo#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}

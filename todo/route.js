@@ -3,7 +3,7 @@ const ToDo = require('../todo/model.js');
 const jsonParser = require('body-parser').json();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 2000;
 
 app.post('/api/todos', jsonParser, (req, res) => {
   let newpost = new ToDo(req.body);
@@ -13,21 +13,22 @@ app.post('/api/todos', jsonParser, (req, res) => {
 
 app.get('/api/todos', (req, res) => {
   if (req.query.id) {
-    return res.send(ToDo.allToDos[req.query.id]);
+    if (ToDo.allToDos[req.query.id]) {
+      return res.send();
+    }
+    throw {mess: 'not found', status: 404}
   }
   let sendBody = ToDo.allToDos;
   if (sendBody) {
     res.send(sendBody);
   } else {
-    status = 404;
-    res.status(404).send('no notes! this is pretty terrible');
+    throw {mess: 'good god something has gone really wrong', status: 404}
   }
 });
 
 app.delete('/api/todos', (req, res) => {
   //check id
   if (req.query.id) {
-    console.log(req.query.id);
     let id = req.query.id;
     let todo = ToDo.allToDos[id];
     if (todo) {
@@ -36,19 +37,21 @@ app.delete('/api/todos', (req, res) => {
         res.send('deleted!')
       });
     } else {
-      res.status(404).send('that todo doesnt exsist')
+      throw {mess: 'not found', status: 404}
     }
   }
 });
 
-app.use('/api/todos', jsonParser, (err, req, res, next) => {
+app.use('/api/todos', (err, req, res, next) => {
   if (err) {
     console.log(err);
-    return res.status(400).send('server error');
+    let status = err.status || 400;
+    let message = err.mess || 'oh no server error';
+    return res.status(status).send(message);
   }
 });
 
 app.listen(PORT, () => {
   console.log(`server running on ${PORT}`);
-}
+  }
 );

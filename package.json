@@ -2,9 +2,11 @@
   "name": "lab-11-express-and-mongo",
   "version": "1.0.0",
   "description": "![cf](https://i.imgur.com/7v5ASc8.png) 11: Single Resource Express API ======",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --fix *.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,16 @@
   },
   "homepage": "https://github.com/meganrm/lab-11-express-and-mongo#readme",
   "dependencies": {
-    "express": "^4.16.2"
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "fs-extra": "^4.0.2",
+    "mongodb": "^2.2.33",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.9.0",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.12.1"
   }
 }

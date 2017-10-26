@@ -1,0 +1,29 @@
+{
+  "name": "lab-11-express-and-mongo",
+  "version": "1.0.0",
+  "description": "![cf](http://i.imgur.com/7v5ASc8.png) 11: Express and Mongo ===",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pmookerjee/lab-11-express-and-mongo.git"
+  },
+  "author": "Paula Mookerjee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pmookerjee/lab-11-express-and-mongo/issues"
+  },
+  "homepage": "https://github.com/Pmookerjee/lab-11-express-and-mongo#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "debug": "^3.1.0",
+    "expect": "^21.2.1",
+    "mocha": "^4.0.1"
+  }
+}

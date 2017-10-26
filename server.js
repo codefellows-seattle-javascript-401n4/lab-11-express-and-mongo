@@ -1,3 +1,3 @@
 'use strict';
 
-const
+const PORT = process.env.PORT || 3000;

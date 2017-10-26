@@ -4,7 +4,7 @@
   "description": "![cf](http://i.imgur.com/7v5ASc8.png) 11: Express and Mongo ===",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,13 +17,11 @@
   },
   "homepage": "https://github.com/Pmookerjee/lab-11-express-and-mongo#readme",
   "dependencies": {
-    "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "fs-extra": "^4.0.2",
     "url": "^0.11.0",
-    "url-parse": "^1.1.9",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
@@ -31,6 +29,7 @@
     "expect": "^21.2.1",
     "express-debug": "^1.1.1",
     "express-generator": "^4.15.5",
-    "mocha": "^4.0.1"
+    "jest": "^21.2.1",
+    "superagent": "^3.8.0"
   }
 }

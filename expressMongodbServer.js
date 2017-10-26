@@ -5,7 +5,7 @@ const promAll = require('bluebird').promisifyAll;
 const mongodb = require('mongodb');
 const MongoClient = promAll(mongodb.MongoClient);
 const connection = MongoClient.connectAsync('mongodb://localhost:27017/expressmongo');
-const jsonParser = require('body-parser').json();
+const jsonParser = require('body-parser').json(); //to provide req.body
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,14 +26,37 @@ app.get('/api/notes', (req,res) => {
   let findQuery = req.query.id ? {_id: mongodb.ObjectId(req.query.id)} : {};
   connection.then(db => {
     const col = promAll(db.collection('Restaurants'));
-    col.findAsync(findQuery).then(cur => {
-      promAll(cur).toArrayAsync()
-        .then(res.send.bind(res))
-        .catch(console.log)
-        .catch(() => res.status(500).send('Server Error'));
-    });
+    if(req.query.id) {
+      col.findAsync(findQuery).then(cur => {
+        promAll(cur).toArrayAsync()
+          .then(res.send.bind(res))
+          .catch(console.log)
+          .catch(() => res.status(500).send('Server Error'));
+      });
+    } else {
+      res.status(400).send('Missing Query ID');
+    }
     return db;
   });
 });
 
+app.delete('/api/notes', (req,res) => {
+  console.log('hi before findQuery');
+  let findQuery = req.query.id ? {_id: mongodb.ObjectId(req.query.id)} : {};
+  connection.then(db => {
+    const col = promAll(db.collection('Restaurants'));
+    if(req.query.id) {
+      col.removeAsync(findQuery).then(() => {
+        res.status(204).send('');
+      })
+      .catch(console.log)
+      .catch(() => res.status(500).send('Server Error'));
+    } else {
+      res.status(404).send('Missing Query ID');
+    }
+  });
+});
+
 app.listen(PORT, () => console.log(`Server up on port: `, PORT));
+
+module.exports = app;

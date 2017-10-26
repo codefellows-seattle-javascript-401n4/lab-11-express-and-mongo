@@ -1,4 +1,5 @@
 'use strict';
+
 const Promise = require('bluebird');
 const prom = Promise.promisify;
 const promAll = Promise.promisifyAll;
@@ -15,18 +16,20 @@ const connection = MongoClient.connectAsync('mongodb://localhost:27017/bacnet')
     readFile('./data/text.csv')
     .then(data => {
         // console.log(data.toString());
-        let notesArray= data.toString();
-        notesArray = notesArray.split('\n');
+        let notes= data.toString();
+        let notesArray = notes.split('\n');
         for (let i=0; i<notesArray.length; i++){
             let recordData = notesArray[i].split(',');
             let record = new Record(recordData);
-            // console.log(record);
-            col.insertAsync(record)
-            .then(console.log)
-            .catch(console.log)
+            notesArray[i]=record;
         }
-    return db; 
-})
-    .catch(db.close.bind(db))
+        col.insertManyAsync(notesArray)
+        .then(console.log)
+        .catch(console.log);
+        // console.log(col);
+        return db;
+    })
+    .then(db.close.bind(db))
     .catch(err => console.log(err))
+    
   })

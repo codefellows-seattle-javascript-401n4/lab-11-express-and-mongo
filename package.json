@@ -4,8 +4,9 @@
   "description": "![cf](http://i.imgur.com/7v5ASc8.png) 11: Express and Mongo ===",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
-    "watch": "nodemon server.js"
+    "test": "mocha",
+    "watch": "nodemon server.js",
+    "debug": "node --debug server.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,11 @@
     "express": "^4.16.2",
     "mongodb": "^2.2.33",
     "nodemon": "^1.12.1"
+  },
+  "devDependencies": {
+    "expect": "^21.2.1",
+    "jest": "^21.2.1",
+    "mocha": "^4.0.1",
+    "superagent": "^3.8.0"
   }
 }

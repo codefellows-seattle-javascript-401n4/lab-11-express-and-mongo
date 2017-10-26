@@ -4,12 +4,12 @@ process.env.PORT = 4000;
 const superagent = require('superagent');
 const expect = require('expect');
 
-describe('api/contact', function() {
+describe('api/contacts', function() {
 
   let noteID = '';
 
   beforeAll((done) => {
-    require('../lib/_server').start();
+    require('../lib/_server').start(process.env.PORT);
     done();
   });
   afterAll((done) => {
@@ -54,91 +54,82 @@ describe('api/contact', function() {
 
     });
 
-    it('should respond with a 400 and "Missing Name"', (done) => {
+    test('should respond with a 400 if name is not given', () => {
 
-      superagent.post('http://localhost:4000/api/contacts')
-      .set('Content-Type;', 'application/json')
+      return superagent.post('http://localhost:4000/api/contacts')
+      .set('Content-Type', 'application/json')
       .send({
         profile: 'Some famous actress',
       })
-      .then(res => {
+      .then(Promise.reject)
+      .catch(res => {
         expect(res.status).toEqual(400);
-        expect(res.body).toEqual('Missing Name');
       });
-      done();
     });
 
-    it('should respond with a 400 and "Missing Profile"', (done) =>{
+    test('should respond with a 400 if profile is not given', () =>{
 
-      superagent.post('http://localhost:4000/api/contacts')
+      return superagent.post('http://localhost:4000/api/contacts')
       .set('Content-Type', 'application/json')
       .send({
         name: 'Michael Jackson',
       })
-      .then(res => {
+      .then(Promise.reject)
+      .catch(res => {
         expect(res.status).toEqual(400);
-        expect(res.body).toEqual('Missing Profile');
       });
-      done();
     });
   });
 
 
   describe('GET /api/contact', () => {
 
-    test('should return a 404 for an unregistered route', (done) => {
+    test('should return a 404 for an unregistered route', () => {
 
-      superagent.get('http://localhost:4000/api/goats')
-      .then(res => {
+      return superagent.get('http://localhost:4000/api/goats')
+      .then(Promise.reject)
+      .catch(res => {
         expect(res.status).toEqual(404);
-        expect(res.body).toEqual('Page Does Not Exist');
       });
-      done();
     });
 
 
-    test('should return a 400 if no id is given', (done) => {
+    test('should return a 400 if no id is given', () => {
 
-      superagent.get(`http://localhost:4000/api/contacts`)
-      .then(res => {
+      return superagent.get(`http://localhost:4000/api/contacts`)
+      .then(Promise.reject)
+      .catch(res => {
         expect(res.status).toEqual(400);
-        expect(res.body).toEqual('Bad Request');
       });
-      done();
     });
 
-    test('should return a 404 for valid request w/id that is not found', (done) => {
+    test('should return a 404 for valid request w/id that is not found', () => {
 
       let badID = 'd61c3640-ba07-11e7-8981-41575cf111bp';
-      superagent.get(`http://localhost:4000/api/contacts?id=${badID}`)
-      .then(res => {
+      return superagent.get(`http://localhost:4000/api/contacts?id=${badID}`)
+      .then(Promise.reject)
+      .catch(res => {
         expect(res.status).toEqual(404);
-        expect(res.body).toEqual('Not Found');
       });
-      done();
     });
 
-    test('should return a 200 for a valid note id', (done) => {
-
-      superagent.get(`http://localhost:4000/api/contact?=${noteID}`)
+    test('should return a 200 for a valid note id', () => {
+      return superagent.get(`http://localhost:4000/api/contacts?id=${noteID}`)
       .then(res => {
         expect(res.status).toEqual(200);
       });
-      done();
     });
 
   });
 
   describe('DELETE /api/contacts', () => {
 
-    test('should respond with a 204 and delete the specified note', (done) => {
+    test('should respond with a 204 and delete the specified note', () => {
 
-      superagent.post(`http://localhost:4000/api/contact?id=${noteID}`)
+      return superagent.delete(`http://localhost:4000/api/contacts?id=${noteID}`)
       .then(res => {
         expect(res.status).toEqual(204);
-        expect(res.message).toEqual('No Content');
       });
-      done();
     });
   });
 

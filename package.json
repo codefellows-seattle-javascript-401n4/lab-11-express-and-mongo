@@ -19,11 +19,18 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
-    "express": "^4.16.2"
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "fs-extra": "^4.0.2",
+    "url": "^0.11.0",
+    "url-parse": "^1.1.9",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "debug": "^3.1.0",
     "expect": "^21.2.1",
+    "express-debug": "^1.1.1",
+    "express-generator": "^4.15.5",
     "mocha": "^4.0.1"
   }
 }

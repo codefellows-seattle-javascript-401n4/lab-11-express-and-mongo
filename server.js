@@ -1,8 +1,4 @@
 'use strict';
 
-const express = require('express');
-const app = express();
-
-
-
-app.listen(3000);
+require('dotenv').config();
+require('./lib/_server').start(process.env.PORT);

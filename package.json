@@ -4,7 +4,7 @@
   "description": "![cf](http://i.imgur.com/7v5ASc8.png) 11: Express and Mongo ===",
   "main": "index.js",
   "scripts": {
-    "test": "jest -i --coverage --verbose",
+    "test": "jest -i --verbose",
     "watch": "nodemon index.js",
     "start": "node index.js"
   },
@@ -25,6 +25,8 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "jest-cli": "^21.2.1",
-    "mongodb": "^2.2.33"
+    "mongodb": "^2.2.33",
+    "superagent": "^3.8.0",
+    "uuid": "^3.1.0"
   }
 }

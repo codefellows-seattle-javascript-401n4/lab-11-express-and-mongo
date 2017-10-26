@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/krichey15/lab-11-express-and-mongo/issues"
   },
-  "homepage": "https://github.com/krichey15/lab-11-express-and-mongo#readme"
+  "homepage": "https://github.com/krichey15/lab-11-express-and-mongo#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33"
+  },
+  "devDependencies": {
+    "expect": "^21.2.1",
+    "jest": "^21.2.1"
+  }
 }

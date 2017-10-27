@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+//promisifyAll will do it for all methods on an object
 const promAll = require('bluebird').promisifyAll;
 const mongodb = require('mongodb');
 const MongoClient = promAll(mongodb.MongoClient);
@@ -13,11 +14,15 @@ const PORT = process.env.PORT || 3000;
 app.post('/api/notes', jsonParser, (req,res) => {
   connection.then(db => {
     const col = promAll(db.collection('Restaurants'));
+    if(req.body) {
     col.insertAsync(req.body)
       .then(mongoRes => mongoRes.ops[0])
       .then(res.send.bind(res))
       .catch(console.log)
       .catch(() => res.status(500).send('server error'));
+    } else if ((req.body === null) || (req.body === '')) {
+      res.status(400).send('Missing Body');
+    }
     return db;
   });
 });
@@ -28,11 +33,17 @@ app.get('/api/notes', (req,res) => {
     const col = promAll(db.collection('Restaurants'));
     if(req.query.id) {
       col.findAsync(findQuery).then(cur => {
-        promAll(cur).toArrayAsync()
-          .then(res.send.bind(res))
-          .catch(console.log)
-          .catch(() => res.status(500).send('Server Error'));
+        //console.log(`!!!!!!!!!cursor is : `, cur);
+        if(cur.count() === 0) {
+          res.status(404).send('No Matching ID');
+        } else {
+          promAll(cur).toArrayAsync()
+            .then(res.send.bind(res))
+            .catch((err) => console.log(`error: `, err))
+            .catch(() => res.status(500).send('Server Error'));
+        }
       });
+      //.catch(() => res.status(404).send('Invalid ID'));
     } else {
       res.status(400).send('Missing Query ID');
     }

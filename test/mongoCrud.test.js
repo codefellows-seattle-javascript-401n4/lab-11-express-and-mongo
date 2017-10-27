@@ -16,7 +16,7 @@ describe('api/notes', function() {
         location: 'Seattle Center',
       })
       .then( res => {
-        console.log(`res.body: `, res.body);
+        //console.log(`res.body: `, res.body);
         expect(res.status).toEqual(200);
         expect(res.body.name).toEqual('Bamboo Garden');
         expect(res.body.type).toEqual('Asian');
@@ -26,11 +26,11 @@ describe('api/notes', function() {
 
     test('should respond with "bad request" if no body was provided or the body was invalid', () => {
       return superagent.post('http://localhost:3000/api/notes')
-      // .set('Content-Type', 'application/json')
-
-      .then( res => {
+      .set('Content-Type', 'application/json')
+      .send('Bad JSON')
+      //if superagent throw an error or bad request then .catch would catch the error
+      .catch( res => {
         expect(res.status).toEqual(400);
-
       });
     });
   });
@@ -41,7 +41,6 @@ describe('api/notes', function() {
       .then( res => {
         expect(res.status).toEqual(200);
         expect(res.body.length).toEqual(1);
-
       });
     });
 
@@ -50,6 +49,14 @@ describe('api/notes', function() {
       .catch( res => {
         expect(res.status).toEqual(400);
 
+      });
+    });
+
+    test('should respond with a 404, "not found" for valid requests but no matching id', () => {
+      //I changed the last digit 8 into 7, creating a no matching id scenario
+      return superagent.get('http://localhost:3000/api/notes?id=59f188e5a6bd55d40529b837')
+      .catch( res => {
+        expect(res.status).toEqual(404);
       });
     });
   });

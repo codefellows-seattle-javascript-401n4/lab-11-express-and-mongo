@@ -1,27 +1,6 @@
 ![cf](https://i.imgur.com/7v5ASc8.png) 11: Single Resource Express API
 ======
 
-## Submission Instructions
-  * fork this repository & create a new branch for your work
-  * write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-susan`
-  * push to your repository
-  * submit a pull request to this repository
-  * submit a link to your PR in canvas
-  * write a question and observation on canvas
-
-## Learning Objectives  
-* students will be able to create a single resource API using the express framework
-* students will be able to leverage 3rd party helper modules for debugging, logging, and handling errors
-
-## Requirements
-
-#### Configuration
-* `package.json`
-* `.eslintrc`
-* `.gitignore`
-* `README.md`
-  * your `README.md` should include detailed instructions on how to use your API
-
 #### Feature Tasks
 * create an HTTP server using `express`
 * create a object constructor that creates a _simple resource_ with at least 3 properties

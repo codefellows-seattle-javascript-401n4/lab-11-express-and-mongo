@@ -10,8 +10,8 @@ class ToDo {
     this.id = opts.id || uuid();
     this.date = new Date();
     this.deadline = opts.deadline || null;
-    this.title = opts.title;
-    this.description = opts.description;
+    this.task = opts.task;
+    this.description = opts.description || null;
   }
 
   // Instance (prototype) Methods
@@ -43,13 +43,16 @@ class ToDo {
 ToDo.allToDos = {};
 
 ToDo.loadAll = function(){
-  fs.readJson(db)
-    .then(packageObj => {
-      ToDo.allToDos = packageObj;
-    })
-    .catch(err => {
-      console.error(err);
-    });
+  return new Promise(function(resolve, reject) {
+    fs.readJson(db)
+      .then(packageObj => {
+        ToDo.allToDos = packageObj;
+        resolve(packageObj);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
 };
 
 module.exports = ToDo;

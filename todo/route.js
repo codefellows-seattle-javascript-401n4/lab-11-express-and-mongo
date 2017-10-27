@@ -1,57 +1,44 @@
-const express = require('express');
-const ToDo = require('../todo/model.js');
-const jsonParser = require('body-parser').json();
+'use strict';
 
-const app = express();
-const PORT = process.env.PORT || 2000;
+const ToDo = require('./model.js');
+const ServerError = require('../lib/error');
 
-app.post('/api/todos', jsonParser, (req, res) => {
+let routes = module.exports = {};
+
+routes.post = ((req, res) => {
+  if (!req.body.task) {
+    throw new ServerError(400, 'need a task to do');
+  }
   let newpost = new ToDo(req.body);
   newpost.addToDo();
-  res.send(`success ${JSON.stringify(newpost)}`);
+  return res.status(200).send(`success ${JSON.stringify(newpost)}`);
 });
 
-app.get('/api/todos', (req, res) => {
+routes.get = ((req, res) => {
   if (req.query.id) {
     if (ToDo.allToDos[req.query.id]) {
-      return res.send();
+      return res.status(200).send(ToDo.allToDos[req.query.id]);
     }
-    throw {mess: 'not found', status: 404}
+    throw new ServerError(404, 'not found');
   }
   let sendBody = ToDo.allToDos;
   if (sendBody) {
-    res.send(sendBody);
-  } else {
-    throw {mess: 'good god something has gone really wrong', status: 404}
+    return res.status(200).send(sendBody);
   }
+  throw new ServerError(404, 'good god something has gone really wrong');
 });
 
-app.delete('/api/todos', (req, res) => {
-  //check id
+routes.delete = ((req, res) => {
   if (req.query.id) {
     let id = req.query.id;
     let todo = ToDo.allToDos[id];
     if (todo) {
-      let toDelete = new ToDo(Object.assign({}, todo))
+      let toDelete = new ToDo(Object.assign({}, todo));
       toDelete.deleteToDo().then(() => {
-        res.send('deleted!')
+        return res.status(200).send('deleted!');
       });
     } else {
-      throw {mess: 'not found', status: 404}
+      throw new ServerError(404, 'not found');
     }
   }
 });
-
-app.use('/api/todos', (err, req, res, next) => {
-  if (err) {
-    console.log(err);
-    let status = err.status || 400;
-    let message = err.mess || 'oh no server error';
-    return res.status(status).send(message);
-  }
-});
-
-app.listen(PORT, () => {
-  console.log(`server running on ${PORT}`);
-  }
-);

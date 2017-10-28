@@ -34,16 +34,17 @@ app.post('/api/notes', jsonParser, (req, res) => {
 });
 
 app.get('/api/notes', (req, res) => {
-  console.log(req.query.id);
   let id = req.query.id ? {_id: mongodb.ObjectId(req.query.id)} : {};
-
   connection.then(db => {
     const col = promAll(db.collection('notes'));
     col.findAsync(id)
       .then(cur => {
-        promAll(cur).toArrayAsync();
+        promAll(cur).toArrayAsync()
+        .then(data => res.status(200).send(data))
+        .catch( () => {
+          res.status(500).send('server error');
+        });
       })
-      .then(res.send.bind(res))
       .catch( () => {
         res.status(500).send('server error');
       });

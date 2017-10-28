@@ -54,7 +54,7 @@ describe('api/notes', function() {
     });
 
     it('should respond with a 404, "not found" for valid requests but no matching id', () => {
-      //I changed the last digit 8 into 7, creating a no matching id scenario
+      //I provided the wrong id number, creating a no matching id scenario
       return superagent.get('http://localhost:3000/api/notes?id=59f188e5a6bd55d40529b837')
       .catch( res => {
         expect(res.status).toEqual(404);

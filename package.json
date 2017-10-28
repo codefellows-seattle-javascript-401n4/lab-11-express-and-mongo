@@ -2,9 +2,9 @@
   "name": "lab-11-express-and-mongo",
   "version": "1.0.0",
   "description": "![cf](http://i.imgur.com/7v5ASc8.png) 11: Express and Mongo ===",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "jest",
     "watch": "nodemon server.js",
     "debug": "node --debug server.js"
   },
@@ -22,9 +22,12 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
+    "fs-extra": "^4.0.2",
     "mongodb": "^2.2.33",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.1",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "expect": "^21.2.1",

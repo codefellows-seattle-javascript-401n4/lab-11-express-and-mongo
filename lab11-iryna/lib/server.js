@@ -36,8 +36,9 @@ app.get('/api/records', (req, res) => {
       .then(res.send.bind(res))
       .catch(console.log)
       .catch(() => res.status(500).send('server error'));
-      return db;
+      // return db;
     })
+    return db
   });
 });
 

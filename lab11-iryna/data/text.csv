@@ -1,22 +1,11 @@
 E. coli,Ampicillin,Any,E. coli,Any,Any,Any,NO,55
 561,Ampicillin,Any,E. coli,Any,Any,Any,NO,86
-620,Ampicillin,Any,E. coli,Any,Any,Any,NO,52
-571,Ampicillin,Any,E. coli,Any,Any,Any,NO,69
-271,Ampicillin,Any,E. coli,Any,Any,Any,NO,74
 220,Trimethoprim/Sulfamethoxazole,VA  Minneapolis,Klebsiella sp.,male,22 to 69 yo,In-patient,NO,27
 731,Trimethoprim/Sulfamethoxazole,VA  Minneapolis,Klebsiella sp.,male,22 to 69 yo,In-patient,YES,0
 Trimethoprim/Sulfamethoxazole,VA  Minneapolis,Klebsiella sp.,male,22 to 69 yo,In-patient,NO,23
 630,Trimethoprim/Sulfamethoxazole,VA  Minneapolis,Klebsiella sp.,male,22 to 69 yo,In-patient,YES,1
 251,Trimethoprim/Sulfamethoxazole,VA  Minneapolis,Klebsiella sp.,male,22 to 69 yo,In-patient,NO,24
 371,ESBL,LA County,Staphylococcus sp.,male,70 yo and up,In-patient,NO,47
-531,ESBL,LA County,Staphylococcus sp.,male,70 yo and up,In-patient,YES,1
-131,ESBL,LA County,Staphylococcus sp.,male,70 yo and up,In-patient,YES,15
 661,ESBL,LA County,Staphylococcus sp.,male,70 yo and up,In-patient,YES,19
-511,ESBL,LA County,Staphylococcus sp.,male,70 yo and up,In-patient,YES,0
-261,ESBL,LA County,Staphylococcus sp.,male,70 yo and up,In-patient,YES,1
-551,ESBL,LA County,Staphylococcus sp.,male,70 yo and up,In-patient,NO,65
-520,ESBL,LA County,Staphylococcus sp.,male,70 yo and up,In-patient,YES,19
 Staphylococcus sp.,Amoxicillin/Clavulanate,NY Langone,Staphylococcus sp.,male,70 yo and up,In-patient,YES,20
 561,Amoxicillin/Clavulanate,NY Langone,Staphylococcus sp.,male,70 yo and up,In-patient,NO,39
-Amoxicillin/Clavulanate,NY Langone,Staphylococcus sp.,male,70 yo and up,In-patient,YES,0
-760,Ampicillin,Any,Staphylococcus sp.,female,Any,Out-patient,NO,31

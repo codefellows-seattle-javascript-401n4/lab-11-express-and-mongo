@@ -35,9 +35,11 @@ describe('api/notes', function() {
     });
   });
 
+
+//post a note first then get the provided id and replaced the id below
   describe('GET /api/notes', () => {
     test('should respond with a 200, containing a response body for a request made with a valid id', () => {
-      return superagent.get('http://localhost:3000/api/notes?id=59f188e5a6bd55d40529b838')
+      return superagent.get('http://localhost:3000/api/notes?id=59f430026148104822e53375')
       .then( res => {
         expect(res.status).toEqual(200);
         expect(res.body.length).toEqual(1);

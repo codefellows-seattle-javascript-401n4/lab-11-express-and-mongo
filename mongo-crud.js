@@ -23,6 +23,7 @@ const connection = MongoClient.connectAsync('mongodb://localhost:27017/mongoprom
 
   connection.then(db => {
     const col = promAll(db.collection('notes'));
+    //cur for cursor; cursor gives us access to the metadata of the request that we've have to Mongodb
     col.findAsync({}).then(cur => {
       promAll(cur).toArrayAsync()
         .then(console.log)

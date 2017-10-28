@@ -1,11 +1,17 @@
 ![cf](https://i.imgur.com/7v5ASc8.png) 11: Single Resource Express API
 ======
-
-npm i --save mongodb bluebird
+_list of all commands_
+npm i --save mongodb bluebird express
 npm i --save -g superagent
 npm i --save-dev expect jest mocha
+mkdir db //remember to add db to your gitignore so db won't be commited up to github
 mongod --dbpath=./db
 node mongo-crud.js
+$ echo '{"name": "Bamboo Garden", "type": "Vegetarian", "city": "Seattle Center"}' | http post localhost:3000/api/notes
+$ http get http://localhost:3000/api/notes?id=59f421c72b61903a60194c9a
+$ http delete http://localhost:3000/api/notes?id=59f421c72b61903a60194c9a
+npm test //remember to kill your server to before running npmm test
+
 ## Instructions for setting up and using MongoDB
 _google mongo Shell Quick Reference for useful commands to run in your mongo console and to verify that you have data going in and to see where things are going wrong_
 1. make a db folder for each of your project: $mkdir db
@@ -14,6 +20,24 @@ _google mongo Shell Quick Reference for useful commands to run in your mongo con
 4. to run the mongo server or mongo daemon type in the following mongo command into the console
 $mongod --dbpath=./db
 5. after running the --dbpath=./db, you will see a message at the bottom "waiting for connections on port 27017"
+6. to start my server, run this command in another terminal: $ node expressMongodbServer
+7. to create a note, open another terminal and type in this example note:
+$ echo '{"name": "Bamboo Garden", "type": "Vegetarian", "city": "Seattle Center"}' | http post localhost:3000/api/notes
+_you should see this successful result_
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Length: 101
+Content-Type: application/json; charset=utf-8
+Date: Sat, 28 Oct 2017 06:20:55 GMT
+ETag: W/"65-lNKwufD7eGlpPW8befBt4+gRCVs"
+X-Powered-By: Express
+
+`{
+    "_id": "59f421c72b61903a60194c9a",
+    "city": "Seattle Center",
+    "name": "Bamboo Garden",
+    "type": "Vegetarian"
+}`
 
 //apply promAll on require MongoDB/grabbing MongoClient and running it through promAll so that we have access to promisify connections inside of there
 //we are running the collection through a promAll so that we can do things that will give us promises back
@@ -53,8 +77,8 @@ const connection = MongoClient.connectAsync('mongodb://localhost:27017/mongoprom
         return db;
     });
 
-//run the following command to see the created note above from console.log
-  $ node mongo-crub.js
+//run the following command to see ALL created notes from console.log
+  $ node mongo-crud.js
 //should see the following in the mongo console
 //result with ok 1 means we inserted one document into the database
 `{result: { ok: 1, n: 1 },
@@ -76,12 +100,23 @@ mongopromisify 0.000GB
 //admin and local are always there; they are created by default when you start the Mondo daemon
 //mongopromisify is the database that we created above
 
-*to choose which database you want to look at by typing the following into the console*
+
+##TO SEE YOUR DATABASE INSIDE THE MONGO CONSOLE
+*to choose which database you want to look at by typing the following into the MONGO console*
 use mongopromisify
 *to see a list collections that we have added to our database, run this command*
 show collections
+//should see the collection that you named: notes
+*to view the notes collection, run this command*
+db notes
 *the command for reading is to find, run the following command in the mongo console*
-db notes find({}); //passing in an empty object
+db.notes.find({}); //passing in an empty object to find all objects in the database
+*to find a specific note with an id, run this command with this id number for an instance*
+db.notes.find({_id: ObjectId("59e9690260b0e22c65563909")})
+
+
+
+
 ## Submission Instructions
   * fork this repository & create a new branch for your work
   * write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-susan`

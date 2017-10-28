@@ -48,7 +48,6 @@ describe('api/notes', function() {
       return superagent.get('http://localhost:3000/api/notes')
       .catch( res => {
         expect(res.status).toEqual(400);
-
       });
     });
 

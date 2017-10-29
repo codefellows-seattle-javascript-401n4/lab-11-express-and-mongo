@@ -4,7 +4,8 @@
   "description": "![cf](https://i.imgur.com/7v5ASc8.png) 11: Single Resource Express API ======",
   "main": "server.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/namgungssi/lab-11-express-and-mongo/issues"
   },
-  "homepage": "https://github.com/namgungssi/lab-11-express-and-mongo#readme"
+  "homepage": "https://github.com/namgungssi/lab-11-express-and-mongo#readme",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [],
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "mongodb": "^2.2.33"
+  }
 }

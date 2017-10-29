@@ -34,22 +34,30 @@ app.post('/api/notes', jsonParser, (req, res) => {
 });
 
 app.get('/api/notes', (req, res) => {
-  let id = req.query.id ? {_id: mongodb.ObjectId(req.query.id)} : {};
-  connection.then(db => {
-    const col = promAll(db.collection('notes'));
-    col.findAsync(id)
-      .then(cur => {
-        promAll(cur).toArrayAsync()
-        .then(data => res.status(200).send(data))
+
+  try {
+    let id = req.query.id ? {_id: mongodb.ObjectId(req.query.id)} : {};
+    connection.then(db => {
+      const col = promAll(db.collection('notes'));
+      col.findAsync(id)
+        .then(cur => {
+          promAll(cur).toArrayAsync()
+          .then(data => res.status(200).send(data))
+          .catch( () => {
+            res.status(500).send('server error');
+          });
+        })
         .catch( () => {
           res.status(500).send('server error');
         });
-      })
-      .catch( () => {
-        res.status(500).send('server error');
-      });
-    return db;
-  });
+      return db;
+    });
+  }
+  
+  catch(err) {
+    res.status(400).send('ID not found');
+  }
+
 });
 
 app.delete('/api/notes', (req, res) => {
@@ -73,6 +81,47 @@ app.delete('/api/notes', (req, res) => {
 
 });
 
-app.listen(3000, () => {
-  console.log('Server up');
-});
+let isRunning = false;
+
+module.exports = {
+  start: () => {
+    return new Promise( (resolve, reject) => {
+      if(!isRunning){
+
+        app.listen(3000, err => {
+          if(err){
+            reject(err);
+          } else {
+            isRunning = true;
+            resolve(console.log('Server up'));
+          }
+        });
+
+      } else {
+
+        reject(console.log('Server is already running'));
+
+      }
+    });
+  },
+  stop: () => {
+    return new Promise( (resolve, reject) =>{
+      if(!isRunning){
+
+        reject(console.log('Server is not up'));
+
+      } else {
+
+        app.close(err => {
+          if(err){
+            reject(err);
+          } else {
+            isRunning = false;
+            resolve(console.log('Server off'));
+          }
+        });
+
+      }
+    });
+  },
+};

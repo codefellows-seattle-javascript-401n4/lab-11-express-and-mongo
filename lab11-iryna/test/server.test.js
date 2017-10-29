@@ -24,15 +24,23 @@ test('POST should create a record', () => {
     .then((res) => {
         expect(res.body.barcode).toEqual("771");
         expect(res.body.site).toEqual("Kaiser");
-        idGet = res.body._id;
     });
 })
 
-test('GET should return a single record provided an id', ()=>{
+test('GET should get an array of records', () => {
     return superagent
-    .get(`localhost:${process.env.PORT}/api/records?id=${idGet}`)
-    .then((res)=>{
-        expect(res.body.barcode).toEqual("771");
-        expect(res.body.site).toEqual("Kaiser");
-    })
-})
+      .get(`localhost:${process.env.PORT}/api/records`)
+      .then(res => {
+        expect(Array.isArray(res.body)).toBe(true);
+      });
+  });
+
+// test('GET should return a record with a provided id', ()=>{
+//     return superagent
+//     .get(`localhost:${process.env.PORT}/api/records?id=${idGet}`)
+//     .then(res => {
+//         expect(res.body._id).toEqual(idGet);
+//         expect(res.body.barcode).toEqual("771");
+//         expect(res.body.site).toEqual("Kaiser");
+//     })
+// })

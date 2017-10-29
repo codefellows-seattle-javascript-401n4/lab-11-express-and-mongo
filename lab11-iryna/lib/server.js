@@ -1,6 +1,5 @@
 'use strict';
-
-const PORT = process.env.PORT || 3000;
+require('dotenv').config();
 const mongodb = require("mongodb");
 const Promise = require('bluebird');
 const prom = Promise.promisify;
@@ -34,7 +33,7 @@ app.get('/api/records', (req, res) => {
     col.findAsync(findQuery).then(cur => {
       promAll(cur).toArrayAsync()
       .then(res.send.bind(res))
-      .catch(console.log)
+      .catch(err=> {console.log(err)})
       .catch(() => res.status(500).send('server error'));
       // return db;
     })
@@ -55,4 +54,4 @@ app.delete('/api/records', bodyParser, (req, res)=>{
   });
 
 
-  app.listen(PORT, () => console.log('server up on port: ' + PORT));
+  app.listen(process.env.PORT, () => console.log('server up on port: ' + process.env.PORT));

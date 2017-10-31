@@ -24,5 +24,6 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "mongodb": "^2.2.33"
-  }
+  },
+  "devDependencies": {}
 }

@@ -7,3 +7,5 @@
 *  GET by ID `http :6969/api/cats?id=`
 * POST a cat `echo '{"name":"tinker","favToy":"DeadMau5"}' | http :6969/api/cats`
 * DELETE a cat ` http delete :6969/api/cats?id= `
+* test are ran with npm test
+* I couldnt get a couple of test to work

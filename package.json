@@ -4,7 +4,7 @@
   "description": "![cf](http://i.imgur.com/7v5ASc8.png) 11: Express and Mongo ===",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,9 @@
     "dotenv": "^4.0.0",
     "expect": "^21.2.1",
     "express": "^4.16.2",
+    "jest": "^21.2.1",
     "mocha": "^4.0.1",
-    "mongodb": "^2.2.33"
+    "mongodb": "^2.2.33",
+    "superagent": "^3.8.0"
   }
 }

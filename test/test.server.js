@@ -2,6 +2,8 @@
 
 const server = require ('../lib/server.js');
 const superagent = require ('superagent');
+const server = require ('../lib/server.js');
+const API_URL = require ('http://localhost:3000/api/notes')
 
 describe ('api/notes', function () {
   beforeAll (server.start);

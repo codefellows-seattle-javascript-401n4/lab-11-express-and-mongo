@@ -2,10 +2,10 @@
   "name": "lab-11-express-and-mongo",
   "version": "1.0.0",
   "description": "![cf](https://i.imgur.com/7v5ASc8.png) 11: Single Resource Express API ======",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node server.js"
+    "start": ".test.server.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,7 @@
     "bluebird": "^3.5.1",
     "mongodb": "^2.2.33"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
 }

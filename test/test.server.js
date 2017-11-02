@@ -11,7 +11,7 @@ describe ('api/notes', function () {
 describe ('POST'), function () {
 
   test ('main, name & 200 status', function () {
-    return superagent.POST ('http://localhost:3000/api/notes')
+    return superagent.post ('http://localhost:3000/api/notes')
     .set ('content')
     .send ({
       name : 'test',
@@ -24,8 +24,8 @@ describe ('POST'), function () {
     });
 
 
-    test ('error 400 no content', function () {
-      return superagent.POST ('http://localhost:3000/api/notes')
+  test ('error 400 no content', function () {
+      return superagent.post ('http://localhost:3000/api/notes')
       .set ('content', application/json)
       .send ({
         name : 'Name',
@@ -38,7 +38,7 @@ describe ('POST'), function () {
 
   describe ('GET', function () {
 
-     test ('200 when request made', function () {
+    test ('200 when request made', function () {
        return superagent.get ('http://localhost:3000/api/notes')
        .then (res => {
          expect (res.status).toEqual (200);
@@ -50,6 +50,6 @@ describe ('POST'), function () {
        .catch (res => {
          expect (res.status).toEqual (400);
        })
-     }}
-   });
- }};
+     })}
+   )});
+ }}}));

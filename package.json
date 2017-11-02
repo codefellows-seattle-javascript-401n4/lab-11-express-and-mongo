@@ -4,7 +4,7 @@
   "description": "![cf](https://i.imgur.com/7v5ASc8.png) 11: Single Resource Express API ======",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "lint": "eslint"
   },
   "repository": {
@@ -28,5 +28,10 @@
     "querystring": "^0.2.0",
     "url": "^0.11.0",
     "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "expect": "^21.2.1",
+    "mocha": "^4.0.1",
+    "superagent": "^3.8.0"
   }
 }

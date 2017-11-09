@@ -11,9 +11,27 @@ const jsonParser = require('body-parser').json();
 const Note = require('./note.js');
 
 
-app.get('/', (req, res, next) => {
-  res.send('HTTP Server');
-  next();
+app.post('/api/notes', jsonParser, (req, res) => {
+
+  if(!req.body.body){
+    return res.status(400).send('No Content');
+  }
+  if(!req.body.title){
+    return res.status(400).send('No Title');
+  }
+
+  let note = new Note(req.body);
+
+  connection.then(db => {
+    const collection = promAll(db.collection('notes'));
+    collection.insertAsync(note)
+      .then(mongoRes => mongoRes.ops[0])
+      .then(res.send.bind(res))
+      .catch(() => {
+        res.status(500).send('Error with the server');
+      });
+    return db;
+  });
 });
 
 app.get('/welcome', (req, res, next) => {

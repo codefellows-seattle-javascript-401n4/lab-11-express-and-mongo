@@ -1,0 +1,27 @@
+{
+  "name": "lab-11-express-and-mongo",
+  "version": "1.0.0",
+  "description": "![cf](https://i.imgur.com/7v5ASc8.png) 11: Single Resource Express API\r ======",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JBEpstein/lab-11-express-and-mongo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JBEpstein/lab-11-express-and-mongo/issues"
+  },
+  "homepage": "https://github.com/JBEpstein/lab-11-express-and-mongo#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "expect": "^21.2.1",
+    "express": "^4.16.2",
+    "uuid": "^3.1.0"
+  }
+}

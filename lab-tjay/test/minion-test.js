@@ -8,13 +8,6 @@ server.start();
 
 describe('api/minions', function() {
 
-//   describe('404 Test', () => {
-//       it('should return 404', () => {
-//           .send('fishsticks')
-//           expect(res.status).toEqual(404);
-//       })
-//   })
-
   describe('POST', function(){
     it('should respond with a 200 status and minion Name and Rank', function(){
       return superagent.post('http://localhost:3000/api/minions')

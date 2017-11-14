@@ -102,7 +102,7 @@ module.exports = {
   stop: () => {
     return new Promise( (resolve, reject) =>{
       if(!isRunning){
-        reject(console.log('Server is not up'));
+        reject(console.log('Server down!'));
       } else {
         app.close(err => {
           if(err){

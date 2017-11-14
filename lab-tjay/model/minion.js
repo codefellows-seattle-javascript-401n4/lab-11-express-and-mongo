@@ -1,11 +1,15 @@
+
 'use strict';
 
-const mongoose = require('mongoose');
+const uuid = require('uuid/v1');
 
-const minionSchema = mongoose.Schema({
-  jobTitle: {type:String, required: true},
-  minionRank: {type:String, required: true},
-  minionAge: {type:Number},
-});
+class Minion {
 
-module.exports = mongoose.model('minion', minionSchema);
+  constructor(config){
+    this.uuid = uuid();
+    this.minionName = config.name || '';
+    this.minionRank = config.content || '';
+  }
+}
+
+module.exports = Minion;

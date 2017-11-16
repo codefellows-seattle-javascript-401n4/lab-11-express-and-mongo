@@ -5,6 +5,9 @@ const Coffee = require('../models/coffee.js');
 const Promise = require('bluebird');
 const jsonParser = require('body-parser').json();
 const prom = Promise.promisify;
+
+//having issues with promAll I think. When I run my tests i get .then().(catch)  not a function
+
 const promAll = Promise.promisifyAll;
 const mongodb = require('mongodb');
 const MongoClient = promAll(mongodb.MongoClient);

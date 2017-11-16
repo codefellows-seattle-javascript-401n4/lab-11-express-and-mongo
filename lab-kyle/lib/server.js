@@ -5,7 +5,8 @@ const Promise = require('bluebird');
 const jsonParser = require('body-parser').json();
 const prom = Promise.promisify;
 const promAll = Promise.promisifyAll;
-const MongoClient = promAll(require('mongodb').MongoClient);
+const mongodb = require('mongodb');
+const MongoClient = promAll(mongodb.MongoClient);
 const connection = MongoClient.connectAsync('mongodb://localhost:27017/expressmongo');
 
 const app = express();
@@ -15,7 +16,7 @@ app.post('/api/notes', jsonParser, (req, res) => {
   connection.then(db => {
     const col = promAll(db.collection('notes'));
     col.insertAsync(req.body)
-      .then(mongoRes => mongoRes.op[0])
+      .then(mongoRes => mongoRes.ops[0])
       .then(res.send.bind(res))
       .catch(console.log)
       .catch(() => res.status(500)).send('server error');
@@ -24,15 +25,31 @@ app.post('/api/notes', jsonParser, (req, res) => {
 });
 
 
-// app.get('/api/notes', (req, res, next) => {
-//   res.send('welcome page');
-//   next();
-// });
-//
-// app.use((req, res, next) => {
-//   res.status(404).send('Path does not exist');
-//   next();
-// });
+app.get('/api/notes', (req, res) => {
+  connection.then(db => {
+    let findQuery = req.query.id ? {_id: mongodb.ObjectId(req.query.id)} : {};
+    const col = promAll(db.collection('notes'));
+    col.findAsync(findQuery).then(cur => {
+      promAll(cur).toArrayAsync()
+        .then(res.send.bind(res))
+        .catch(console.log)
+        .catch(() => res.status(500).send('server error'));
+    });
+    return db;
+  });
+});
+
+app.delete('api/notes', (req, res) => {
+  connection.then( db => {
+    let findQuery = req.query.id ? {_id: mongodb.ObjectId(req.query.id)} : false;
+    const col = promAll(db.collection('notes'));
+    col.removeAsync(findQuery)
+      .then(() => res.status(204).send('content deleted'))
+      .catch(console.log)
+      .catch(() => res.status(500).send('server error'));
+    return db;
+  });
+});
 
 app.listen(PORT, () => {
   console.log('Up and Running On PORT: ' + PORT);

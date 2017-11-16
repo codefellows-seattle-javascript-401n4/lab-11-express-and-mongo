@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "expect": "^21.2.1",
-    "jest": "^21.2.1"
+    "jest": "^21.2.1",
+    "superagent": "^3.8.1"
   }
 }

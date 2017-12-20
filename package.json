@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/namgungssi/lab-11-express-and-mongo#readme",
   "directories": {
+    "lib": "lib",
     "test": "test"
   },
   "keywords": [],

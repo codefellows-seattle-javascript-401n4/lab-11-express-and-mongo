@@ -1,57 +1,129 @@
 'use strict';
 
-const server = require ('../lib/server.js');
-const superagent = require ('superagent');
-const server = require ('../lib/server.js');
-const API_URL = require ('http://localhost:3000/api/notes')
-
-describe ('api/notes', function () {
-  beforeAll (server.start);
-  afterAll (server.stop);
 
 
-describe ('POST'), function () {
+process.env.PORT = 4000;
 
-  test ('main, name & 200 status', function () {
-    return superagent.post ('http://localhost:3000/api/notes')
-    .set ('content')
-    .send ({
-      name : 'test',
-      content : 'content',
+const superagent = require('superagent');
+const expect = require('expect');
+
+
+
+describe('api/contacts', function() {
+
+  let nodeID = '';
+
+  beforeAll((done) => {
+    require('../lib/_server').start(process.env.PORT);
+    done();
+  });
+
+  afterAll((done) => {
+    require('../lib/))_server').stop();
+    done();
+  });
+
+
+
+describe('POST /api/contacts', () => {
+  test('should respond with a 200', () => {
+    return superagent.post(`http://localhost:4000/api/contacts`)
+    .set('Content-Type', 'application/json')
+    .send({
+      name: '',
+      profile: '',
     })
-    .then (res => {
-      expect (res.status).toEqual (200);
-      expect (res.main.name).toEqual ('test');
-      expect (res.main.content).toEqual ('content');
+    .then(res => {
+      expect(res.status).toEqual(200);
+      expect(res.body.name).toEqual('');
+      expect(res.body.profile).toEqual('');
+      noteID = res.body.id;
     });
+  });
 
 
-  test ('error 400 no content', function () {
-      return superagent.post ('http://localhost:3000/api/notes')
-      .set ('content', application/json)
-      .send ({
-        name : 'Name',
-      })
-      .then (Promise.reject)
-      .catch (res => {
-        expect (res.status).toEqual (400);
-      });
+
+  test('should respond with 400 if name not provided', () => {
+    return superagent.post(`http://localhost:4000/api/contacts`)
+    .set('Content-Type', 'application/json')
+    .send({
+      profile: '',
+    })
+    .then(Promise.reject)
+    .catch(res => {
+      expect(res.status).toEqual(400);
+    });
+  });
 
 
-  describe ('GET', function () {
 
-    test ('200 when request made', function () {
-       return superagent.get ('http://localhost:3000/api/notes')
-       .then (res => {
-         expect (res.status).toEqual (200);
-       })
-     })
-     test ('400 wrong id', function () {
-       return superagent.get ('http://localhost:3000/api/notes')
-       .then (Promise.reject)
-       .catch (res => {
-         expect (res.status).toEqual (400);
-       })
-     })}
-   )});
- }}}));
+  test('should respond with a 400 if profile is not given', () => {
+    return superagent.post(`http://localhost:4000/api/contacts`)
+    .set('Content-Type', 'application/json')
+    .send({
+      name: '',
+    })
+    .then(Promise.reject)
+    .catch(res => {
+      expect(res.status).toEqual(400);
+    });
+  });
+});
+
+
+
+describe('GET /api/contact', () => {
+  test('should return a 404 for wrong route', () => {
+    return superagent.get(`http://localhost:4000/api/numners`)
+    .then(Promise.reject)
+    .catch(res => {
+      expect(res.status).toEqual(404);
+    });
+  });
+
+
+
+  test('should return a 400 if no id', () => {
+    return superagent.get(`http://localhost:4000/api/contacts`)
+    .then(Promise.reject)
+    .catch(res => {
+      expect(res.status).toEqual(400);
+    });
+  });
+
+
+
+  test('should return a 404 if no id', () => {
+    let badID = 'jfjkhdf838373';
+    return superagent.get(`http://localhost:4000/api/contacts?id=${id}`)
+    .then(Promise.reject)
+    .catch(res => {
+      expect(res.status).toEqual(404);
+    });
+  });
+
+
+
+  test('should return a 200 for a working id', () => {
+    return superagent.get(`http://localhost:4000/api/contacts?id=${noteID}`)
+    .then(res => {
+      expect(res.status).toEqual(200);
+    });
+  });
+});
+
+
+
+describe('DELETE /api/contacts', () => {
+  test('should return a 204 and delete', () => {
+    return superagent.delete(`http://localhost:4000/api/contacts?id=${noteID}`)
+    .then(res => {
+      expect(res.status).toEqual(204);
+    });
+  });
+});
+
+
+
+
+});

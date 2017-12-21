@@ -1,37 +1,35 @@
 {
   "name": "lab-11-express-and-mongo",
   "version": "1.0.0",
-  "description": "![cf](https://i.imgur.com/7v5ASc8.png) 11: Single Resource Express API ======",
+  "description": "![cf](http://i.imgur.com/7v5ASc8.png) 11: Express and Mongo ===",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "start": ".index.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/namgungssi/lab-11-express-and-mongo.git"
   },
-  "author": "",
+  "author": "Brian Namgung",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/namgungssi/lab-11-express-and-mongo/issues"
   },
   "homepage": "https://github.com/namgungssi/lab-11-express-and-mongo#readme",
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  },
-  "keywords": [],
   "dependencies": {
-    "bluebird": "^3.5.1",
-    "expect": "^22.0.3",
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
-    "fs-extra": "^5.0.0",
-    "mongodb": "^2.2.33",
-    "superagent": "^3.8.2",
+    "fs-extra": "^4.0.2",
+    "url": "^0.11.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "jest": "^21.2.1"
+    "debug": "^3.1.0",
+    "expect": "^21.2.1",
+    "express-debug": "^1.1.1",
+    "express-generator": "^4.15.5",
+    "jest": "^21.2.1",
+    "superagent": "^3.8.0"
   }
 }

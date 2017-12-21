@@ -1,9 +1,9 @@
 'use strict';
 
 
-require('dotenv').config();
-require('../lib/_server').start(process.env.PORT);
 
+require('dotenv').config();
+require('./lib/_server').start(process.env.PORT);
 
 /*
 console.log (app);

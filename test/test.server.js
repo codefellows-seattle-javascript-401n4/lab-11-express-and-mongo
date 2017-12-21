@@ -1,5 +1,12 @@
 'use strict';
 
+<<<<<<< HEAD
+=======
+const server = require ('../lib/server.js');
+const superagent = require ('superagent');
+const server = require ('../lib/server.js');
+const API_URL = require ('http://localhost:3000/api/notes')
+>>>>>>> dcccacb9bdb2fbee02e72f895c488c0c8183bbe9
 
 
 process.env.PORT = 5500;

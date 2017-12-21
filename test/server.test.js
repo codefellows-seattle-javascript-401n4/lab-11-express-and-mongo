@@ -58,7 +58,7 @@ describe('api/contacts', function() {
 
 
 
-    test('should respond with a 400 if name is not given', () => {
+    test('should respond 400 if name not given', () => {
       return superagent.post('http://localhost:4000/api/contacts')
       .set('Content-Type', 'application/json')
       .send({
@@ -72,7 +72,7 @@ describe('api/contacts', function() {
 
 
 
-    test('should respond with a 400 if profile is not given', () =>{
+    test('should respond 400 if profile not given', () =>{
       return superagent.post('http://localhost:4000/api/contacts')
       .set('Content-Type', 'application/json')
       .send({
@@ -88,7 +88,7 @@ describe('api/contacts', function() {
 
 
   describe('GET /api/contact', () => {
-    test('should return a 404 for an unregistered route', () => {
+    test('should return 404 for unassigned route', () => {
       return superagent.get('http://localhost:4000/api/goats')
       .then(Promise.reject)
       .catch(res => {
@@ -98,7 +98,7 @@ describe('api/contacts', function() {
 
 
 
-    test('should return a 400 if no id is given', () => {
+    test('should return 400 if no id', () => {
       return superagent.get(`http://localhost:4000/api/contacts`)
       .then(Promise.reject)
       .catch(res => {
@@ -108,7 +108,7 @@ describe('api/contacts', function() {
 
 
 
-    test('should return a 404 for valid request w/id that is not found', () => {
+    test('should return 404 for valid request with id', () => {
       let badID = 'd61c3640-ba07-11e7-8981-41575cf111bp';
       return superagent.get(`http://localhost:4000/api/contacts?id=${badID}`)
       .then(Promise.reject)
@@ -119,7 +119,7 @@ describe('api/contacts', function() {
 
 
 
-    test('should return a 200 for a valid note id', () => {
+    test('should return 200 for valid id', () => {
       return superagent.get(`http://localhost:4000/api/contacts?id=${noteID}`)
       .then(res => {
         expect(res.status).toEqual(200);
@@ -130,7 +130,7 @@ describe('api/contacts', function() {
 
 
   describe('DELETE /api/contacts', () => {
-    test('should respond with a 204 and delete the specified note', () => {
+    test('should respond 204 and delete specified note', () => {
       return superagent.delete(`http://localhost:4000/api/contacts?id=${noteID}`)
       .then(res => {
         expect(res.status).toEqual(204);

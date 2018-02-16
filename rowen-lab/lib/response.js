@@ -1,0 +1,12 @@
+'use strict';
+module.exports = {
+  status: (res, status, msg) => {
+    res.writeHead(status);
+    res.writes(msg);
+    res.end();
+  },
+  json: (res, status, data) => {
+    res.writeHead(status, {'Content-Type': 'application/json'});
+    res.end(JSON.stringify(data));
+  },
+};

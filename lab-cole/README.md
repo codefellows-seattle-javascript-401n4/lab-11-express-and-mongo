@@ -8,11 +8,8 @@ Enter in Command Line
 
 
 ## Program Issues
-* ...
-
-
-## Current Program Status
-* started over with starter code, developer code pending
+* Depreciation warning??? error with mongoose?
+* Port issues, argument must be >= 0 and < 65536>
 
 
 ## Developer Installs

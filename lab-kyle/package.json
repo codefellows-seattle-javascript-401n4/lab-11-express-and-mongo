@@ -1,0 +1,31 @@
+{
+  "name": "lab-kyle",
+  "version": "0.0.1",
+  "description": "lab-11",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krichey15/lab-11-express-and-mongo.git"
+  },
+  "author": "richey.kyle.i@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krichey15/lab-11-express-and-mongo/issues"
+  },
+  "homepage": "https://github.com/krichey15/lab-11-express-and-mongo#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "expect": "^21.2.1",
+    "jest": "^21.2.1",
+    "superagent": "^3.8.1"
+  }
+}
